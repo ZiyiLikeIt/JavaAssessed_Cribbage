@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /*****************************************
  * 
  * @filename HandValue.java
@@ -28,6 +26,11 @@ public class HandValue {
 		cards = new Card[5];
 		initCardList(args);
 		cardComb = Combinations.combinations(cards);
+		int points = 0;
+		for (Card[] comb : cardComb) {
+			points += EvaluateCards.evaluate(comb);
+		}
+		System.out.println(points);
 	}
 	
 // Methods

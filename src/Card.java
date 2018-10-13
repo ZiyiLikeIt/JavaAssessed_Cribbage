@@ -17,16 +17,15 @@ public class Card {
 // Attributes
 	private char cardRank; // the rank of card
 	private char cardSuit; // the suit of card
-	private int faceValue;
+	private int faceValue; // value for 15s calculate
 	private boolean isStartCard; // the flag of start card
 
 // Constructor
 	Card(String sCard) throws IllegalArgumentException {
 		this.cardRank = sCard.charAt(0);
 		this.cardSuit = sCard.charAt(1);
-		if ("CDHS".indexOf(cardSuit) < 0) {
+		if ("CDHS".indexOf(cardSuit) < 0)
 			throw new IllegalArgumentException("Invalid Card Suit");
-		}
 		this.faceValue = Character.getNumericValue(cardRank);
 		if (faceValue < 2 || faceValue > 9) {
 			switch (cardRank) {
@@ -46,7 +45,7 @@ public class Card {
 		}
 		this.isStartCard = false; // need to be updated using getter
 	}
-
+	
 // getter and setter
 	/** the flag of start card */
 	public boolean isStartCard() {
