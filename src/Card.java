@@ -1,6 +1,6 @@
 /*****************************************
  * 
- * @filename CardEntity.java
+ * @filename Card.java
  * 
  * @project JavaAssessed_Cribbage
  * 
