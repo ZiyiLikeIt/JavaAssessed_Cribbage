@@ -18,7 +18,6 @@ public class Card {
 	private char cardRank; // the rank of card
 	private char cardSuit; // the suit of card
 	private int faceValue; // value for 15s calculate
-	private boolean isStartCard; // the flag of start card
 
 // Constructor
 	Card(String sCard) throws IllegalArgumentException {
@@ -43,20 +42,9 @@ public class Card {
 					throw new IllegalArgumentException("Invalid Card Rank");
 			}
 		}
-		this.isStartCard = false; // need to be updated using getter
 	}
 	
 // getter and setter
-	/** the flag of start card */
-	public boolean isStartCard() {
-		return isStartCard;
-	}
-
-	/** set the flag of start card */
-	public void setStartCard(boolean isStartCard) {
-		this.isStartCard = isStartCard;
-	}
-
 	public char getCardRank() {
 		return cardRank;
 	}

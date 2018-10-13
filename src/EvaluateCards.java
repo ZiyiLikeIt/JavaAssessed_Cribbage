@@ -65,13 +65,13 @@ public final class EvaluateCards {
 	 * @return points of Runs in this combination
 	 */
 	private static int checkRuns(Card[] comb) {
-		String[] rankMatrix = {"","","","",""};
+		String[] rankMatrix = {"","","",""};
 		for (Card c : comb) {
-			rankMatrix[0] += c.getCardRank();
-			rankMatrix[1] += getNextRank(rankMatrix[0].charAt(rankMatrix[0].length()-1));
-			rankMatrix[2] += getNextRank(rankMatrix[1].charAt(rankMatrix[1].length()-1));
-			rankMatrix[3] += getNextRank(rankMatrix[2].charAt(rankMatrix[2].length()-1));
-			rankMatrix[4] += getNextRank(rankMatrix[3].charAt(rankMatrix[3].length()-1));
+			char currRank = c.getCardRank();
+			rankMatrix[0] += currRank;
+			rankMatrix[1] += getNextRank(currRank);
+			rankMatrix[2] += getNextRank(getNextRank(currRank));
+			rankMatrix[3] += getNextRank(getNextRank(getNextRank(currRank)));
 		}
 		
 		int threeCardsRun = 0;
@@ -83,9 +83,8 @@ public final class EvaluateCards {
 				if (chInRow3 > 0) { // found in row 3
 					int chInRow4 = getOccurrenceOf(rankMatrix[3], ch);
 					if (chInRow4 > 0) { // found in row 4, Run of 4 cards found
-						int chInRow5 = getOccurrenceOf(rankMatrix[4], ch);
-						if (chInRow5 > 0) // found in row 5, Run of 5 cards found
-							return 5;
+						if (getOccurrenceOf(rankMatrix[0], getNextRank(ch)) > 0)
+							return 5; // Run of 5 cards found
 						else
 							fourCardsRun += (chInRow2 * chInRow3 * chInRow4);
 					} else //Run of 3 cards found
@@ -146,7 +145,6 @@ public final class EvaluateCards {
 				return 0;
 			}
 		}
-		System.out.println("Flushes detected");
 		if (comb[4].getCardSuit() == firstSuit)
 			return 5;
 		else 

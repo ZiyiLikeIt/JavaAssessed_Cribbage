@@ -45,7 +45,6 @@ public class HandValue {
 				System.exit(-1);
 			}
 		}
-		cards[4].setStartCard(true);
 	}
 	
 	
